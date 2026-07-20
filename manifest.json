@@ -1,23 +1,23 @@
 {
-  "name": "Cods App",
-  "short_name": "CodsApp",
-  "start_url": "https://cods-app.blogspot.com/?utm_source=pwa",
-  "scope": "https://cods-app.blogspot.com/",
+  "name": "CODS App",
+  "short_name": "CODS",
+  "description": "Aplikasi Web Progresif untuk CODS",
+  "start_url": "https://cods-app.blogspot.com/",
   "display": "standalone",
-  "background_color": "#ffffff",
+  "background_color": "#f4f6f8",
   "theme_color": "#007bff",
-  "orientation": "portrait",
-    "icons": [
+  "orientation": "portrait-primary",
+  "icons": [
     {
-      "src": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/.../ikon-192.png",
+      "src": "https://www.blogger.com/img/favicon.ico",
       "sizes": "192x192",
-      "type": "image/png",
+      "type": "image/x-icon",
       "purpose": "any maskable"
     },
     {
-      "src": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/.../ikon-512.png",
+      "src": "https://www.blogger.com/img/favicon.ico",
       "sizes": "512x512",
-      "type": "image/png",
+      "type": "image/x-icon",
       "purpose": "any maskable"
     }
   ]
