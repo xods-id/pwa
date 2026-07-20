@@ -1,7 +1,8 @@
 {
-  "name": "Aplikasi Saya",
-  "short_name": "AppSaya",
-  "start_url": "/",
+  "name": "Cods App",
+  "short_name": "CodsApp",
+  "start_url": "https://cods-app.blogspot.com/?utm_source=pwa",
+  "scope": "https://cods-app.blogspot.com/",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#007bff",
