@@ -1,44 +1,31 @@
-const CACHE_NAME = 'pwa-blogger-v1';
-const ASSETS_TO_CACHE = [
-  '/',
-  '/favicon.ico'
-];
-self.addEventListener('install', (event) => {
-  event.waitUntil(
-    caches.open(CACHE_NAME).then((cache) => {
-      return cache.addAll(ASSETS_TO_CACHE);
-    })
-  );
-  self.skipWaiting();
-});
-self.addEventListener('activate', (event) => {
-  event.waitUntil(
-    caches.keys().then((cacheNames) => {
-      return Promise.all(
-        cacheNames.map((cache) => {
-          if (cache !== CACHE_NAME) {
-            return caches.delete(cache);
-          }
+<!-- PWA SERVICE WORKER VIA INLINE BLOB (SOLUSI DIPERLUKAN UNTUK BLOGSPOT) -->
+<script type='text/javascript'>
+//<![CDATA[
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', function() {
+      // Kode Service Worker dimasukkan langsung agar dianggap Se-Domain oleh Chrome
+      const swCode = `
+        const CACHE_NAME = 'pwa-blogspot-v1';
+        self.addEventListener('install', e => { self.skipWaiting(); });
+        self.addEventListener('activate', e => { e.waitUntil(clients.claim()); });
+        self.addEventListener('fetch', e => {
+          e.respondWith(
+            fetch(e.request).catch(() => caches.match(e.request))
+          );
+        });
+      `;
+      
+      const blob = new Blob([swCode], { type: 'text/javascript' });
+      const blobUrl = URL.createObjectURL(blob);
+
+      navigator.serviceWorker.register(blobUrl)
+        .then(function(reg) {
+          console.log('PWA SW Berhasil Aktif!', reg.scope);
         })
-      );
-    })
-  );
-  self.clients.claim();
-});
-self.addEventListener('fetch', (event) => {
-  event.respondWith(
-    fetch(event.request)
-      .then((response) => {
-        if (event.request.method === 'GET' && response.status === 200) {
-          const responseClone = response.clone();
-          caches.open(CACHE_NAME).then((cache) => {
-            cache.put(event.request, responseClone);
-          });
-        }
-        return response;
-      })
-      .catch(() => {
-        return caches.match(event.request);
-      })
-  );
-});
+        .catch(function(err) {
+          console.error('Gagal SW:', err);
+        });
+    });
+  }
+//]]>
+</script>
