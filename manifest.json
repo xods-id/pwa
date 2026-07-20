@@ -1,8 +1,8 @@
 {
   "name": "CODS App",
   "short_name": "CODS",
-  "description": "Aplikasi Web Progresif CODS",
-  "start_url": "/?source=pwa",
+  "start_url": "https://cods-app.blogspot.com/",
+  "scope": "https://cods-app.blogspot.com/",
   "display": "standalone",
   "background_color": "#f4f6f8",
   "theme_color": "#007bff",
